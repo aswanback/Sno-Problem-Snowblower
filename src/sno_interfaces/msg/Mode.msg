@@ -1,0 +1,1 @@
+bool auto_mode False

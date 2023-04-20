@@ -1,0 +1,60 @@
+import math
+
+# robot physical params
+ROBOT_LENGTH_IN = 25 
+ROBOT_WIDTH_IN = 18
+WHEEL_RADIUS_IN = 7
+SPEED_AT_FULL_MOTOR_FPS = 1/2 # ft/s at full motor forward
+
+PATH_OVERLAP_IN = 4
+WAYPOINT_TOLERANCE_IN = 6
+
+GPS_UPDATE_RATE = 0.1 # seconds
+COMPASS_UPDATE_RATE = 0.1 # seconds
+MODE_UPDATE_RATE = 0.1
+HANDLE_UPDATE_RATE = 0.05
+ULTRASONIC_PULSE_RATE = 0.5
+US_SAFE_MIN_CM = 80
+STEPPER_INCREMENT = 15 # steps
+STEPPER_MAX_STEPS = 150 # 300 total, 150 each way
+
+# motors
+DEFAULT_SPEED_PERCENT = 1.0
+DEFAULT_AUGER_SPEED_PERCENT = 0.4
+AUGER_ON_IN_AUTO = False # whether auger is on in auto mode
+DEFAULT_LINEAR_VEL_FPS = 1
+DEFAULT_ANGULAR_VEL_RPS = 5 * math.pi/180
+DIST_TO_START_SCALING_LIN_VEL_IN = 24
+ANGLE_TO_START_SCALING_ANG_VEL_RAD = 8 * math.pi/180
+
+# unit conversions
+GPS_TO_IN = 1/364000
+
+# pwm pins
+LEFT_PWM1 = 11
+LEFT_PWM2 = 13
+RIGHT_PWM1 = 33
+RIGHT_PWM2 = 35
+AUGER_PWM = 32
+
+# SCL / SDA  (3,5) reserved for compass
+
+# gpio pins
+# 8, 10, 16, 18, 22, 24, 26, 36, 38, 40
+# 19, 21, 23, 29, 31 37
+STEPPER_DIR = 21    # 21
+STEPPER_STEP = 19   # 19
+
+MODE = 8
+HANDLE_LEFT = 10            # B1
+HANDLE_RIGHT = 16           # B7
+HANDLE_DIRECTION = 22       # S2 
+HANDLE_CHUTE_LEFT = 24      # B5  
+HANDLE_CHUTE_RIGHT = 26     # B6 
+HANDLE_AUGER_ON = 18        # S3
+
+# yellow echo
+US_TRIG_1 = 37
+US_ECHO_1 = 31
+US_TRIG_2 = 29
+US_ECHO_2 = 23

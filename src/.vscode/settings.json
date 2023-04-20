@@ -1,0 +1,10 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/pi/ws/build/sno",
+        "/home/pi/ws/install/sno/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "cmake.sourceDirectory": "${workspaceFolder}/sno_interfaces",
+    "ros.distro": "humble"
+}
