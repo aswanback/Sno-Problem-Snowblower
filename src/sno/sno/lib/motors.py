@@ -57,9 +57,9 @@ if __name__ == '__main__':
     # from arduino import pinMode, analogWrite, IOType
     # import time
     
-    # motor = DriveMotor(LEFT_PWM1, LEFT_PWM2)
+    # # motor = DriveMotor(LEFT_PWM1, LEFT_PWM2)
     # motor = DriveMotor(RIGHT_PWM1, RIGHT_PWM2)
-    # motor = AugerMotor(AUGER_PWM)
-    # motor.move(0.5)
-    # time.sleep(5)
+    # # motor = AugerMotor(AUGER_PWM)
+    # motor.move(-1)
+    # time.sleep(3)
     # motor.stop()

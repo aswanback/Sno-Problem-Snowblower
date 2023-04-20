@@ -51,9 +51,9 @@ class StepperNode(rclpy.node.Node):
     def stepper_cb(self, data:Stepper):
         if not self.auto_mode:
             self.stepper.setSpeed(0)
-            if data.left and self.stepper.currentPosition() < STEPPER_MAX_STEPS:
+            if data.right and self.stepper.currentPosition() < STEPPER_MAX_STEPS:
                     self.stepper.setSpeed(100)
-            elif data.right and -STEPPER_MAX_STEPS < self.stepper.currentPosition():
+            elif data.left and -STEPPER_MAX_STEPS < self.stepper.currentPosition():
                     self.stepper.setSpeed(-100)
     
     def mode_cb(self, data:Mode):
@@ -61,7 +61,6 @@ class StepperNode(rclpy.node.Node):
     
     def stepper_run_cb(self):
         self.stepper.runSpeed()
-        # self.stepper.run()
 
     # def update_graph_callback(self):
     #     self.update_display()

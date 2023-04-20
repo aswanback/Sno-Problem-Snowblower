@@ -21,9 +21,11 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Location.msg"
   "msg/Mode.msg"
   "msg/Motors.msg"
+  "msg/Rtk.msg"
   "msg/Stepper.msg"
   "msg/Ultrasonics.msg"
   "msg/Waypoints.msg"
+  "msg/Handle.msg"
 )
 
 

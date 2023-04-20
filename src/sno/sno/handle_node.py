@@ -1,8 +1,9 @@
 import rclpy
 import rclpy.node
-from sno_interfaces.msg import FlutterControl, Mode, Motors, Stepper
+from sno_interfaces.msg import FlutterControl, Mode, Motors, Stepper, Handle
 from sno.lib.config import *
 from sno.lib.arduino import digitalRead, getPin, pinMode, IOType
+from sno.lib.msgs import setMsgAttr
 
 class HandleNode(rclpy.node.Node):
     def __init__(self):
@@ -11,6 +12,7 @@ class HandleNode(rclpy.node.Node):
         self.create_subscription(Mode, '/mode', self.mode_cb, 10)
         self.motor_pub = self.create_publisher(Motors, '/motors', 1)
         self.stepper_pub = self.create_publisher(Stepper, '/stepper', 1)
+        self.handle_pub = self.create_publisher(Handle, '/handle', 1)
         self.create_timer(HANDLE_UPDATE_RATE, self.handle_cb)
         self.pin_list = [HANDLE_LEFT, HANDLE_RIGHT, HANDLE_DIRECTION, HANDLE_CHUTE_LEFT, HANDLE_CHUTE_RIGHT, HANDLE_AUGER_ON]
         self.pins = [getPin(p) for p in self.pin_list]
@@ -24,10 +26,14 @@ class HandleNode(rclpy.node.Node):
     
     def handle_cb(self):
         if not self.auto_mode:
-            left, right, direction, chute_left, chute_right, auger_on = [digitalRead(p) for p in self.pins]
+            vals = [digitalRead(p) for p in self.pins]
+            left, right, direction, chute_left, chute_right, auger_on = vals
             direction = not direction # hardware hack
             auger_on = not auger_on # hardware hack
-            self.log(f'left: {left}\n right:{right}\ndir:{direction}\nchute_left:{chute_left}\nchute_right{chute_right}\nauger_on:{auger_on}')
+            msg = Handle()
+            for field,val in zip(['left', 'right', 'direction', 'chute_left', 'chute_right', 'auger_on'], vals):
+                setMsgAttr(msg, field, val)
+            self.handle_pub.publish(msg)
 
             d = 1 if direction else -1
             l = 1 if left else 0
